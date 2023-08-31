@@ -6,7 +6,7 @@
 /*   By: avolcy <avolcy@student.42barcelon>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:43:46 by avolcy            #+#    #+#             */
-/*   Updated: 2023/08/29 21:32:36 by avolcy           ###   ########.fr       */
+/*   Updated: 2023/08/31 17:08:50 by avolcy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
@@ -53,10 +55,12 @@ size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 char		*ft_itoa(int n);
+char		*get_next_line(int fd);
 char		*ft_strdup(const char *s1);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		**ft_split(char const *s, char c);
+char		*ft_strjoin2(char *storage, char *buffer);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
@@ -66,6 +70,7 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(void *content);
+void		*ft_clean_up(char **alloc_mem);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstiter(t_list *lst, void (*f)(void *));
@@ -73,16 +78,4 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
-# endif
-
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-char		*get_next_line(int fd);
-void		*ft_clean_up(char **alloc_mem);
-char		*ft_strjoin2(char *storage, char *buffer);
 #endif
